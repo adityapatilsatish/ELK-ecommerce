@@ -81,10 +81,10 @@ Curl commands
 
 curl -X GET -k http://localhost:9200
 
-curl -X GET -k -u <userName>:<token> http://localhost:9200
+Replace your user name and password which you have noted at starting of elasticsearch
+curl -X GET -k -u <userName>:<password> http://localhost:9200
 
 eg: curl -X GET -k -u elastic:F9eVqh=FaDG1O7lvFd9k http://localhost:9200
- 
 
 curl -X GET -k http://localhost:9200/_cluster/health
 
