@@ -1,0 +1,91 @@
+GET /_cluster/health
+
+GET /_cat/nodes?v
+
+GET /_cat/health?v
+
+GET _cat/shards?v
+
+#create/Delete index
+PUT /employees
+
+DELETE /employees
+
+PUT employees
+{
+  "settings":
+  {
+    "number_of_shards": 2,
+    "number_of_replicas": 1
+  }
+}
+
+DELETE /employee
+
+#Insert documents in index
+POST employee/_doc
+{
+  "name":"Aditya",
+  "empId":01
+}
+
+POST employee/_doc/023241422
+{
+  "name":"Patil",
+  "empId":02
+}
+
+GET employee/_doc/02
+
+
+#Query documents 
+
+GET employee/_search
+{
+  "query":{
+  "match_all":{}
+
+  }
+}
+
+GET employee/_search
+{
+  "query": {
+    "match": {
+      "emp_id": "02"
+    }
+  }
+}
+
+#update the doc
+POST /employee/_update/023241422
+{
+  "doc":{
+    "dept":"IT"
+  }
+}
+
+#delete doc 
+DELETE /employees/_doc/123
+
+POST /employees/_delete_by_query
+{
+  "query": {
+    "term": {
+      "emp_id": 02
+    }
+  }
+}
+====================
+Curl commands
+
+curl -X GET -k http://localhost:9200
+
+curl -X GET -k -u <userName>:<token> http://localhost:9200
+
+eg: curl -X GET -k -u elastic:F9eVqh=FaDG1O7lvFd9k http://localhost:9200
+ 
+
+curl -X GET -k http://localhost:9200/_cluster/health
+
+curl -X PUT -k http://localhost:9200/employees
